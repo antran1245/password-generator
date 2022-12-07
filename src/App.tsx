@@ -9,13 +9,13 @@ function App() {
       <p className='text-grey heading-medium text-center mb-[31px] '>Password Generator</p>
 
       {/* Password that been generated */}
-      <div className='bg-darkgrey flex justify-between items-center px-32 py-19 w-[540px]'>
+      <div className='bg-darkgrey flex justify-between items-center px-32 py-19 max-w-[540px] w-[95vw]'>
         <p className='text-white heading-large'>PTx1f5DaFX</p>
         <img src={copy} alt={'copy icon'}/>
       </div>
 
       {/* Control section for what the password include */}
-      <div className='bg-darkgrey w-[540px] pt-[24px] px-[32px] pb-[32px] mt-[24px]'>
+      <div className='bg-darkgrey max-w-[540px] w-[95vw] pt-[24px] px-[32px] pb-[32px] mt-[24px]'>
         
         {/* Choose the length of the password to generate */}
         <div className='flex justify-between items-center'>
@@ -49,9 +49,9 @@ function App() {
         </div>
 
         {/* The strength of the password */}
-        <div className='bg-black py-[20px] px-[32px] flex items-center justify-between'>
+        <div className='bg-black py-[20px] px-[32px] sm:py-[14px] sm:px-[16px] flex items-center justify-between'>
           <p className='text-grey body'>STRENGTH</p>
-          <div className='flex'>
+          <div className='flex items-center'>
             <p className='text-white heading-medium mr-[16px]'>MEDIUM</p>
             {/* Power bars */}
             <div className='boxes flex items-center'>

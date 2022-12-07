@@ -14,6 +14,9 @@ module.exports = {
       'orange': '#FB7C58',
       'yellow': '#F8CD65'
     },
+    screens: {
+      'sm': {'max': '576px'},
+    },
     fontFamily: {
       'JetBrains' : ['JetBrains Mono', 'monospace']
     },
