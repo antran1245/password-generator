@@ -1,22 +1,101 @@
-.App {
-  text-align: center;
+/* 
+  Global Setting
+*/
+* {
+  padding: 0;
+  margin: 0;
+  font-family: theme('fontFamily.JetBrains');
+}
+body {
+  background-color: theme('colors.black');
+}
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+.heading-large, .heading-medium, .body {
+  font-weight: 700;
+}
+.heading-large {
+  font-size: 32px;
+  line-height: 43px;
+}
+.heading-medium {
+  font-size: 24px;
+  line-height: 31px;
+}
+.body {
+  font-size: 18px;
+  line-height: 23px;
 }
 
-@layer  component {
-  .heading-large, .heading-medium, .body {
-    font-family: theme('fontFamily.JetBrains');
-    font-weight: 700;
-  }
-  .heading-large {
-    font-size: 32px;
-    line-height: 43px;
-  }
-  .heading-medium {
-    font-size: 24px;
-    line-height: 31px;
-  }
-  .body {
-    font-size: 18px;
-    line-height: 23px;
-  }
+
+/* 
+  Custom Slider
+*/
+.slider {
+  appearance: none;
+  height: 8px;
+  background-color: theme('colors.black');
+}
+/* Chrome style */
+.slider::-webkit-slider-runnable-track {
+  overflow: hidden;
+}
+.slider::-webkit-slider-thumb {
+  box-shadow: -500px 0 0 485px theme('colors.green');
+  appearance: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-color: white;
+}
+/* Firefox */
+.slider::-moz-range-thumb {
+  appearance: none;
+  background-color: theme('colors.white');
+  border-radius: 50%;
+  border: none;
+  height: 28px;
+  width: 28px;
+}
+.slider::-moz-range-progress {
+  background-color: theme('colors.green');
+  height: 8px;
+}
+/* IE */
+.slider::-ms-fill-lower {
+  background-color: theme('colors.green');
+}
+
+/* 
+  Custom Checkbox
+*/
+.form-control {
+  display: flex;
+  width: fit-content;
+}
+.form-control input {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border: 2px solid theme('colors.white');
+  display: grid;
+  place-content: center;
+}
+.form-control input:checked {
+  background-color: theme('colors.green');
+  border: none;
+}
+.form-control input:checked::before {
+  content: url(./assets/images/icon-check.svg);
+}
+
+/* 
+  Strength box
+*/
+.box {
+  width: 10px;
+  height: 28px;
 }
