@@ -102,33 +102,37 @@ function App() {
           <p className='text-white body'>Character Length</p>
           <p className='text-green heading-large'>{slideNum}</p>
         </div>
-        <input type="range" 
-          max={32} min={1} value={slideNum} 
-          onChange={(e) => setSlideNum(Number(e.target.value))}
-          className="slider cursor-pointer w-full mt-[16px]" 
-        />
+        <label>
+          <input type="range" 
+            max={32} min={1} value={slideNum} 
+            onChange={(e) => setSlideNum(Number(e.target.value))}
+            className="slider cursor-pointer w-full mt-[16px]" 
+            />
+        </label>
 
         {/* Checkboxes section that let users choose what to include in their password */}
         <div className='my-[32px]'>
           <label className='form-control'>
             <input type="checkbox" onChange={(e) => setInclude({...include, uppercase: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Uppercase Letters (A-Z)</p>
+            <span className='text-white body ml-[24px]'>Include Uppercase Letters (A-Z)</span>
           </label>
           <label className='form-control mt-[20px]'>
             <input type="checkbox" onChange={(e) => setInclude({...include, lowercase: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Lowercase Letters (a-z)</p>
+            <span className='text-white body ml-[24px]'>Include Lowercase Letters (a-z)</span>
           </label>
           <label className='form-control mt-[20px]'>
             <input type="checkbox" onChange={(e) => setInclude({...include, numbers: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Numbers (0-9)</p>
+            <span className='text-white body ml-[24px]'>Include Numbers (0-9)</span>
           </label>
-          <label className='form-control mt-[20px] w-[100%]'>
-            <input type="checkbox" onChange={(e) => setInclude({...include, symbols: e.target.checked})}/>
-            <div className='flex flex-col items-start w-[100%]'>
-              <p className='text-white body ml-[24px] w-fit'>Include Symbols</p>
+          <div className='form-control mt-[20px] w-[100%]'>
+            <label>
+              <input type="checkbox" onChange={(e) => setInclude({...include, symbols: e.target.checked})}/>
+            </label>
+            <label className='flex flex-col items-start w-[100%]'>
+              <span className='text-white body ml-[24px] w-fit'>Include Symbols</span>
               <input type={'text'} className="body w-[90%] ml-[24px] mt-[5px]" placeholder={"~`!@#$%^&*()_-+={[}]|:;<,>.?/"} value={possibleSymbols} onChange={(e) => setPossibleSymbols(e.target.value)}/>
-            </div>
-          </label>
+            </label>
+          </div>
         </div>
 
         {/* The strength of the password */}
