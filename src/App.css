@@ -30,6 +30,7 @@ body {
   line-height: 23px;
 }
 
+/* Phone screen size: max 576px */
 @media only screen and (max-width: 576px) {
   .heading-large {
     font-size: 24px;
@@ -63,7 +64,11 @@ body {
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-color: white;
+  background-color: theme('colors.white');
+}
+.slider::-webkit-slider-thumb:active {
+  background-color: theme('colors.black');
+  border: 2px solid theme('colors.green');
 }
 /* Firefox */
 .slider::-moz-range-thumb {
@@ -73,6 +78,10 @@ body {
   border: none;
   height: 28px;
   width: 28px;
+}
+.slider::-moz-range-thumb:active {
+  background-color: theme('colors.black');
+  border: 2px solid theme('colors.green');
 }
 .slider::-moz-range-progress {
   background-color: theme('colors.green');
@@ -112,4 +121,8 @@ body {
 .box {
   width: 10px;
   height: 28px;
+}
+
+.generate:hover img {
+  filter: invert(84%) sepia(30%) saturate(465%) hue-rotate(71deg) brightness(102%) contrast(106%);
 }

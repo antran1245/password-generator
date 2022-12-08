@@ -11,7 +11,7 @@ function App() {
       {/* Password that been generated */}
       <div className='bg-darkgrey flex justify-between items-center px-32 py-19 max-w-[540px] w-[95vw]'>
         <p className='text-white heading-large'>PTx1f5DaFX</p>
-        <img src={copy} alt={'copy icon'}/>
+        <img src={copy} alt={'copy icon'} className="cursor-pointer hover:contrast-[400%]"/>
       </div>
 
       {/* Control section for what the password include */}
@@ -23,9 +23,9 @@ function App() {
           <p className='text-green heading-large'>10</p>
         </div>
         <input type="range" 
-          max={32} min={1} defaultValue={16} 
+          max={32} min={1} defaultValue={10} 
           onChange={(e) => console.log(e.target.value)}
-          className="slider w-full mt-[16px]" 
+          className="slider cursor-pointer w-full mt-[16px]" 
         />
 
         {/* Checkboxes section that let users choose what to include in their password */}
@@ -64,7 +64,7 @@ function App() {
         </div>
 
         {/* Generate button */}
-        <button className='text-darkgrey body w-full bg-green flex items-center justify-center py-[21px] mt-[32px]'>
+        <button className='generate text-darkgrey hover:text-green body border-[2px] hover:border-[#A4FFAF] hover:border-[2px] w-full bg-green hover:bg-darkgrey flex items-center justify-center py-[21px] mt-[32px]'>
           GENERATE
           <img src={arrow} alt="arrow" className='ml-[24px]'/>
         </button>
