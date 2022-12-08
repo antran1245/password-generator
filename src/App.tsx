@@ -8,8 +8,12 @@ function App() {
   const [level, setLevel] = useState<string>('TOO WEAK!')
   const [bar, setBar] = useState<number>(1)
   const [include, setInclude] = useState<{uppercase: boolean, lowercase: boolean, numbers: boolean, symbols: boolean} | any>({uppercase: false, lowercase: false, numbers: false, symbols: false})
-  
+  const [possibleSymbols, setPossibleSymbols] = useState<string>("~`!@#$%^&*()_-+={[}]|:;<,>.?/")
+  const [password, setPassword] = useState<string>('PTx1f5DaFX')
+  const [copied, setCopied] = useState<boolean>(false)
+
   useEffect(() => {
+    setCopied(false)
     // Determine the strength of the passwword
     let strength = 0
     if (slideNum >= 16) {
@@ -42,15 +46,52 @@ function App() {
       setBar(4)
     }
   }, [slideNum, include])
-  
+
+  const generate = () => {
+    setCopied(false)
+    // Default string with possible addition depending on what is check
+    let passwordGenerated = ''
+    let lowercase = 'abcdefghijklmnopqrstuvwxyz'
+    let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let numbers = '0123456789'
+    // add onto the lowercase string base on check
+    if(include.uppercase) {
+      lowercase += uppercase
+    }
+    if(include.numbers) {
+      lowercase += numbers
+    }
+    if(include.symbols) {
+      lowercase += possibleSymbols
+    }
+
+    // Randomly add letter into one string
+    let lengthOfPossible = lowercase.length
+    for(let i = 0; i < slideNum; i++) {
+      let index = Math.floor(Math.random() * lengthOfPossible)
+      passwordGenerated += lowercase[index]
+    }
+    setPassword(passwordGenerated)
+  }
+
+  const copying = () =>  {
+    navigator.clipboard.writeText(password)
+    setCopied(true)
+  }
   return (
     <main className="m-auto">
       <p className='text-grey heading-medium text-center mb-[31px] '>Password Generator</p>
 
       {/* Password that been generated */}
       <div className='bg-darkgrey flex justify-between items-center px-32 py-19 max-w-[540px] w-[95vw]'>
-        <p className='text-white heading-large'>PTx1f5DaFX</p>
-        <img src={copy} alt={'copy icon'} className="cursor-pointer hover:contrast-[400%]"/>
+        <p className={`text-white heading-large ${copied? 'w-[70%]' : 'w-[90%]'} overflow-x-hidden`}>{password}</p>
+        <div className='flex'>
+          {
+            copied?
+            <p className='text-green body mr-[16px]'>COPIED</p> : null
+          }
+          <img src={copy} alt={'copy icon'} className="cursor-pointer hover:contrast-[400%]" onClick={() => copying()}/>
+        </div>
       </div>
 
       {/* Control section for what the password include */}
@@ -71,19 +112,22 @@ function App() {
         <div className='my-[32px]'>
           <label className='form-control'>
             <input type="checkbox" onChange={(e) => setInclude({...include, uppercase: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Uppercase Letters</p>
+            <p className='text-white body ml-[24px]'>Include Uppercase Letters (A-Z)</p>
           </label>
           <label className='form-control mt-[20px]'>
             <input type="checkbox" onChange={(e) => setInclude({...include, lowercase: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Lowercase Letters</p>
+            <p className='text-white body ml-[24px]'>Include Lowercase Letters (a-z)</p>
           </label>
           <label className='form-control mt-[20px]'>
             <input type="checkbox" onChange={(e) => setInclude({...include, numbers: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Numbers</p>
+            <p className='text-white body ml-[24px]'>Include Numbers (0-9)</p>
           </label>
-          <label className='form-control mt-[20px]'>
+          <label className='form-control mt-[20px] w-[100%]'>
             <input type="checkbox" onChange={(e) => setInclude({...include, symbols: e.target.checked})}/>
-            <p className='text-white body ml-[24px]'>Include Symbols</p>
+            <div className='flex flex-col items-start w-[100%]'>
+              <p className='text-white body ml-[24px] w-fit'>Include Symbols</p>
+              <input type={'text'} className="body w-[90%] ml-[24px] mt-[5px]" placeholder={"~`!@#$%^&*()_-+={[}]|:;<,>.?/"} value={possibleSymbols} onChange={(e) => setPossibleSymbols(e.target.value)}/>
+            </div>
           </label>
         </div>
 
@@ -103,7 +147,7 @@ function App() {
         </div>
 
         {/* Generate button */}
-        <button className='generate text-darkgrey hover:text-green body border-[2px] hover:border-[#A4FFAF] hover:border-[2px] w-full bg-green hover:bg-darkgrey flex items-center justify-center py-[21px] mt-[32px]'>
+        <button onClick={() => generate()} className='generate text-darkgrey hover:text-green body border-[2px] hover:border-[#A4FFAF] hover:border-[2px] w-full bg-green hover:bg-darkgrey flex items-center justify-center py-[21px] mt-[32px]'>
           GENERATE
           <img src={arrow} alt="arrow" className='ml-[24px]'/>
         </button>
